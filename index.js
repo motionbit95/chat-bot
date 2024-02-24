@@ -5,7 +5,7 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-  origin: "https://port-0-chat-bot-17xco2nlszge3vt.sel5.cloudtype.app",
+  origin: "https://motionbit-chatbot.netlify.app",
   // 이 설정은 https://sub.example.app 인 origin을 허용합니다.
   // 어플리케이션 구성에 맞게 origin 규칙을 적용해주세요.
   optionsSuccessStatus: 200,
