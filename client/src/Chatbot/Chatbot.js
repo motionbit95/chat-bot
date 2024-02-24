@@ -6,6 +6,8 @@ import Message from "./Sections/Message";
 import { List, Icon, Avatar } from "antd";
 import Card from "./Sections/Card";
 import UserMessage from "./Sections/UserMessage";
+import { post } from "jquery";
+
 function Chatbot() {
   const dispatch = useDispatch();
   const messagesFromRedux = useSelector((state) => state.message.messages);
@@ -34,8 +36,8 @@ function Chatbot() {
     };
     try {
       //I will send request to the textQuery ROUTE
-      const response = await Axios.post(
-        "/api/dialogflow/textQuery",
+      const response = await post(
+        "https://port-0-chat-bot-17xco2nlszge3vt.sel5.cloudtype.app/api/dialogflow/textQuery",
         textQueryVariables
       );
 
@@ -68,8 +70,8 @@ function Chatbot() {
     };
     try {
       //I will send request to the textQuery ROUTE
-      const response = await Axios.post(
-        "/api/dialogflow/eventQuery",
+      const response = await post(
+        "https://port-0-chat-bot-17xco2nlszge3vt.sel5.cloudtype.app/api/dialogflow/eventQuery",
         eventQueryVariables
       );
       for (let content of response.data.fulfillmentMessages) {
@@ -165,7 +167,7 @@ function Chatbot() {
   return (
     <div
       style={{
-        height: "80vh",
+        height: 700,
         width: 700,
         // border: "3px solid black",
         borderRadius: "7px",
