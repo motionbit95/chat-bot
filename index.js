@@ -1,7 +1,15 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const app = express();
+
+var corsOptions = {
+  origin: "https://port-0-chat-bot-17xco2nlszge3vt.sel5.cloudtype.app",
+  // 이 설정은 https://sub.example.app 인 origin을 허용합니다.
+  // 어플리케이션 구성에 맞게 origin 규칙을 적용해주세요.
+  optionsSuccessStatus: 200,
+};
 
 const config = require("./server/config/keys");
 // const mongoose = require("mongoose");
@@ -20,12 +28,12 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 
   // index.html for all page routes
-  app.get("*", (req, res) => {
+  app.get("*", cors(corsOptions), (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 
 app.listen(port, () => {
   console.log(`Server Running at ${port}`);
